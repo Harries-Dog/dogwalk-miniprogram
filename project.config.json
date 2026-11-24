@@ -2,7 +2,7 @@
   "description": "遛遛 · 遛狗安全与社区共治小程序",
   "compileType": "miniprogram",
   "miniprogramRoot": "miniprogram/",
-  "appid": "touristappid",
+  "appid": "wx6f20af2c767782ad",
   "projectname": "dogwalk",
   "libVersion": "3.5.0",
   "setting": {
