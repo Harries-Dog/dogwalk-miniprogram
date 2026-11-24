@@ -6,7 +6,7 @@
 
 1. 打开**微信开发者工具** → 导入项目
 2. 目录选择本文件夹 `遛狗小程序`（不是里面的 `miniprogram`）
-3. AppID 选择「测试号」即可（`project.config.json` 已填 `touristappid`）
+3. AppID 从 `project.config.json` 自动读取（已填正式 AppID `wx6f20af2c767782ad`），不要再手动改成测试号
 4. 点击编译，可在模拟器里完整点击体验
 
 不需要后端、不需要 npm install、不需要配地图 key。地图是离线绘制的演示画布。
