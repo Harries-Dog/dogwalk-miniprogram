@@ -1,0 +1,163 @@
+.locdot {
+  width: 14rpx; height: 14rpx; border-radius: 50%;
+  background: #0f6e56; margin-right: 12rpx;
+}
+
+.map-wrap { padding: 0 32rpx; }
+.map-canvas {
+  position: relative;
+  height: 620rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  background: #eef2ec;
+  border: 1rpx solid #e0e5df;
+}
+.road { position: absolute; background: #ffffff; }
+.road-h { left: 0; right: 0; height: 30rpx; }
+.road-v { top: 0; bottom: 0; width: 30rpx; }
+.block { position: absolute; background: #e0e5df; border-radius: 8rpx; }
+.park {
+  position: absolute;
+  background: #d9edcf;
+  border-radius: 16rpx;
+  color: #3b6d11;
+  font-size: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stray-zone {
+  position: absolute;
+  width: 240rpx; height: 240rpx;
+  margin-left: -120rpx; margin-top: -120rpx;
+  border-radius: 50%;
+  background: rgba(250,238,218,.85);
+  border: 2rpx dashed #ba7517;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.stray-title { font-size: 20rpx; color: #854f0b; font-weight: 600; }
+.stray-sub { font-size: 18rpx; color: #854f0b; margin-top: 4rpx; }
+
+.me-dot {
+  position: absolute;
+  left: 50%; top: 58%;
+  width: 22rpx; height: 22rpx;
+  margin-left: -11rpx; margin-top: -11rpx;
+  border-radius: 50%;
+  background: #378add;
+  border: 4rpx solid #fff;
+  box-shadow: 0 0 0 14rpx rgba(55,138,221,.16);
+}
+.me-label {
+  position: absolute;
+  left: 50%; top: calc(58% + 26rpx);
+  transform: translateX(-50%);
+  font-size: 20rpx; color: #185fa5;
+}
+
+.pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pin-dot {
+  width: 56rpx; height: 56rpx;
+  border-radius: 50%;
+  background: #fff;
+  border: 4rpx solid #0f6e56;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #0f6e56;
+}
+.pin-y .pin-dot { border-color: #ba7517; color: #854f0b; }
+.pin-r .pin-dot { border-color: #a32d2d; color: #a32d2d; }
+.pin-label { font-size: 20rpx; color: #0f6e56; margin-top: 6rpx; }
+.pin-y .pin-label { color: #854f0b; }
+.pin-r .pin-label { color: #a32d2d; }
+
+.sos {
+  position: absolute;
+  right: 28rpx; bottom: 28rpx;
+  width: 96rpx; height: 96rpx;
+  border-radius: 50%;
+  background: #a32d2d;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 600;
+  border: 4rpx solid #fff;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 20rpx rgba(163,45,45,.3);
+  line-height: 1;
+}
+.sos::after { border: none; }
+
+.legend {
+  position: absolute;
+  left: 24rpx; bottom: 24rpx;
+  background: rgba(255,255,255,.92);
+  border: 1rpx solid #e6e4dd;
+  border-radius: 12rpx;
+  padding: 12rpx 16rpx;
+  font-size: 19rpx;
+  color: #6b6a65;
+}
+.legend-sub { font-size: 18rpx; margin-top: 2rpx; }
+
+.sheet {
+  background: #fff;
+  border-radius: 28rpx 28rpx 0 0;
+  margin-top: -20rpx;
+  position: relative;
+  padding: 28rpx 32rpx 40rpx;
+  min-height: 420rpx;
+}
+.quickmini {
+  border: 1rpx solid #0f6e56;
+  color: #0f6e56;
+  background: #e1f5ee;
+  border-radius: 28rpx;
+  padding: 8rpx 22rpx;
+  font-size: 20rpx;
+}
+.empty {
+  font-size: 22rpx;
+  color: #6b6a65;
+  background: #f6f5f1;
+  border-radius: 14rpx;
+  padding: 24rpx;
+  text-align: center;
+  margin: 20rpx 0;
+}
+
+.dogrow {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e6e4dd;
+}
+.dogrow:last-child { border-bottom: none; }
+.avatar {
+  width: 64rpx; height: 64rpx;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24rpx; font-weight: 600;
+  margin-right: 20rpx; flex: none;
+}
+.avatar-g { background: #e1f5ee; color: #0f6e56; }
+.avatar-y { background: #faeeda; color: #854f0b; }
+.avatar-r { background: #fcebeb; color: #a32d2d; }
+.avatar-stray { background: #f0efeb; color: #6b6a65; }
+.dogname { font-size: 26rpx; font-weight: 500; }
+.dogdesc { font-size: 20rpx; color: #6b6a65; margin-top: 2rpx; }

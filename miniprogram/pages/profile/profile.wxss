@@ -1,0 +1,15 @@
+.avatar {
+  width: 88rpx; height: 88rpx;
+  border-radius: 50%;
+  background: #e1f5ee; color: #0f6e56;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32rpx; font-weight: 600;
+}
+.privacy-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e6e4dd;
+}
+.privacy-row:last-of-type { border-bottom: none; }
+.privacy-row .bold { font-size: 26rpx; }

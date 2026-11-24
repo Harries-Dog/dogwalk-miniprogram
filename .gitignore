@@ -1,0 +1,9 @@
+# 微信开发者工具自动生成 / 个人本地配置
+project.private.config.json
+.idea/
+.vscode/
+*.log
+.DS_Store
+
+# 依赖
+node_modules/

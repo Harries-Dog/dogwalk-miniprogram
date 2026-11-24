@@ -1,0 +1,6 @@
+.locdot {
+  width: 14rpx; height: 14rpx; border-radius: 50%;
+  background: #0f6e56; margin-right: 12rpx;
+}
+.photo { text-align: center; }
+.ticketno { letter-spacing: 2rpx; }

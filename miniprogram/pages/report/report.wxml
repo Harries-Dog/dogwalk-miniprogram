@@ -1,0 +1,85 @@
+<view class="page">
+
+  <view class="head">
+    <view class="locrow">
+      <view class="row"><view class="locdot"></view><text class="strong">{{community}}</text></view>
+      <view class="privacy">仅本小区可见</view>
+    </view>
+    <view class="title">流浪狗上报</view>
+    <view class="sub">只记录行为与处置，不做危险定性</view>
+  </view>
+
+  <view class="steps">
+    <view wx:for="{{stepList}}" wx:key="*this" class="step {{index < step - 1 ? 'done' : (index === step - 1 ? 'on' : '')}}"></view>
+  </view>
+
+  <view class="pad">
+    <view wx:if="{{step === 1}}">
+      <view class="quick" bindtap="onQuick">
+        <view class="quick-icon">快</view>
+        <view class="grow">
+          <view class="quick-title">一键目击 · 3 秒上报</view>
+          <view class="quick-sub">自动记录当前区域，一次确认就直达物业</view>
+        </view>
+      </view>
+
+      <view class="formlabel">或按步骤详细说明</view>
+      <view class="notice">只记录你观察到的事实，不需要判断它是否"危险"。</view>
+
+      <view class="opts">
+        <view wx:for="{{types}}" wx:key="key" class="opt {{type === item.key ? 'sel' : ''}} {{item.key === '紧急' ? 'emergency' : ''}}" data-key="{{item.key}}" bindtap="onType">
+          {{item.label}}
+          <view class="optdesc">{{item.desc}}</view>
+        </view>
+      </view>
+
+      <button wx:if="{{type}}" class="btn" bindtap="onNext1">下一步</button>
+    </view>
+
+    <view wx:if="{{step === 2}}">
+      <view class="formlabel">2 / 4　观察到哪些行为？可多选</view>
+      <view>
+        <view wx:for="{{behaviors}}" wx:key="value" class="behavior {{item.on ? 'on' : ''}}" data-value="{{item.value}}" bindtap="onBehavior">{{item.value}}</view>
+      </view>
+      <view class="notice">行为描述用于物业判断处置方式，不构成对犬只的定性。</view>
+      <button class="btn" bindtap="onNext2">下一步</button>
+      <button class="btn ghost" bindtap="onPrev1">上一步</button>
+    </view>
+
+    <view wx:if="{{step === 3}}">
+      <view class="formlabel">3 / 4　在哪个区域？</view>
+      <view class="notice">只选区域，不上传精确坐标——避免有人按图驱赶或伤害。</view>
+      <view class="areaitem {{area === item ? 'on' : ''}}" wx:for="{{areas}}" wx:key="*this" data-value="{{item}}" bindtap="onArea">
+        {{item}}
+        <view wx:if="{{area === item}}">✓</view>
+      </view>
+      <view class="photo" bindtap="onPhoto">{{photoText}}</view>
+      <view wx:if="{{type === '紧急'}}" class="notice red">正在攻击？请同时拨打 110 或 120，上报不会替代报警。</view>
+      <button class="btn" bindtap="onNext3">下一步</button>
+      <button class="btn ghost" bindtap="onPrev2">上一步</button>
+    </view>
+
+    <view wx:if="{{step === 4}}" class="success">
+      <view class="success-mark">✓</view>
+      <view class="success-title">上报成功</view>
+      <view class="muted">已提交给物业服务中心</view>
+      <view class="ticketno">工单 {{lastTicket.id}}</view>
+      <view class="muted">{{lastTicket.type}} · {{lastTicket.area}}</view>
+      <view class="muted">行为：{{behaviorText}}</view>
+      <button class="btn" bindtap="toAdmin">模拟物业收到工单</button>
+      <button class="btn ghost" bindtap="onReset">再报一次</button>
+    </view>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showQuick}}" bindtap="onCloseQuick">
+    <view class="modal" catchtap="noop">
+      <view class="modal-title">一键目击</view>
+      <view class="modal-sub">自动带入：区域「{{currentArea}}」· 类型「目击」</view>
+      <view class="notice">只登记区域和事实，不做危险定性。工单会直接进物业工单池。</view>
+      <button class="btn" bindtap="onQuickConfirm">确认上报</button>
+      <button class="btn ghost" bindtap="onQuickDetail">补充行为详情</button>
+      <button class="btn ghost" bindtap="onCloseQuick">取消</button>
+    </view>
+  </view>
+
+</view>

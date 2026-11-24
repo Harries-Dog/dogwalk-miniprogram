@@ -1,0 +1,77 @@
+<view class="page">
+
+  <view class="head">
+    <view class="locrow">
+      <view class="strong">阳光花园物业服务中心</view>
+      <view class="privacy">权限隔离 · 无居民数据</view>
+    </view>
+    <view class="title">流浪狗工单</view>
+    <view class="sub">处置由物业及相关主管部门执行</view>
+  </view>
+
+  <view class="stats">
+    <view class="stat" bindtap="onFilterStat" data-key="new">
+      <view class="stat-num">{{newCount}}</view>
+      <view class="stat-label">待认领</view>
+    </view>
+    <view class="stat" bindtap="onFilterStat" data-key="doing">
+      <view class="stat-num">{{doingCount}}</view>
+      <view class="stat-label">处理中</view>
+    </view>
+    <view class="stat" bindtap="onFilterStat" data-key="done">
+      <view class="stat-num">{{doneCount}}</view>
+      <view class="stat-label">本月已闭环</view>
+    </view>
+  </view>
+
+  <view class="summary-link" bindtap="onSummary">查看月度公示 →</view>
+
+  <view class="chips">
+    <view wx:for="{{filters}}" wx:key="key" class="chip {{item.on ? 'on' : ''}}" data-key="{{item.key}}" bindtap="onFilter">{{item.label}}</view>
+  </view>
+
+  <view class="tickets">
+    <view wx:for="{{filteredTickets}}" wx:key="id" class="ticket" data-id="{{item.id}}" bindtap="onTicket">
+      <view class="between">
+        <view class="muted">{{item.id}} · {{item.time}}</view>
+        <view class="badge {{item.statusClass}}">{{item.statusLabel}}</view>
+      </view>
+      <view class="ticket-title">{{item.type}} · {{item.area}}</view>
+      <view class="muted">{{item.behaviorText}}</view>
+    </view>
+    <view wx:if="{{filteredTickets.length === 0}}" class="empty">这个状态下还没有工单</view>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showDetail}}" bindtap="onCloseModal">
+    <view class="modal" catchtap="noop">
+      <view class="modal-title">{{current.id}} · {{current.type}}</view>
+      <view class="modal-sub">{{current.area}} · {{current.time}} · 当前：{{current.statusLabel}}</view>
+      <view class="tagrow">
+        <view wx:for="{{current.behaviors}}" wx:key="*this" class="tinytag">{{item}}</view>
+        <view wx:if="{{current.behaviors.length === 0}}" class="tinytag">仅登记位置</view>
+      </view>
+      <view class="notice">居民身份与遛狗会话数据对物业不可见，此处只有工单信息。</view>
+      <block wx:if="{{current.status !== 'done'}}">
+        <button class="btn" bindtap="onClaim">{{current.status === 'new' ? '认领工单' : '指派巡逻'}}</button>
+        <button class="btn ghost" bindtap="onCloseTicket">标记已处置并回写</button>
+      </block>
+      <view wx:else class="reason g">已处置并回写到居民端地图</view>
+      <button class="btn ghost" bindtap="onCloseModal">关闭</button>
+    </view>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showSummary}}" bindtap="onCloseModal">
+    <view class="modal" catchtap="noop">
+      <view class="modal-title">本月处置简报</view>
+      <view class="modal-sub">阳光花园 · 3 期 · 可直接转发业主群</view>
+      <view class="reason g">
+        <view>新增工单 {{totalCount}} 件</view>
+        <view>待认领 {{newCount}} 件 · 处理中 {{doingCount}} 件</view>
+        <view>已闭环 {{doneCount}} 件</view>
+      </view>
+      <view class="notice">V1 只做工单闭环；TNR、领养与数量统计在 V2 接入。</view>
+      <button class="btn ghost" bindtap="onCloseModal">关闭</button>
+    </view>
+  </view>
+
+</view>
